@@ -1,9 +1,63 @@
+<h1>*ngFor Objs</h1>
+<div>
+    <div *ngFor="let product of products">
+        <img width="180" [src]="product.image" alt="image">
+        <h2>{{product.price}}</h2>
+        <p>{{product.name}}</p>
+    </div>
+</div>
+
+<hr>
+
+<h1>*ngFor</h1>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="newName">
+<button (click)="addName()">Add name</button>
+<ul>
+    <li *ngFor="let name of names; index as i">
+       {{i}} - {{name}}
+       <button (click)="deleteName(i)">Delete</button>
+    </li>
+</ul>
+
+<hr>
+
+<h1>*ngIf</h1>
+    <input type="text" required [(ngModel)]="person.age">
+    <p *ngIf="person.age<18 && person.age">Soy menor de edad</p>
+    <p *ngIf="person.age>=18 && person.age">Soy mayor de edad</p>
+
+    <p *ngIf="person.name.toLowerCase(); else myBlock">Soy Osnayder</p>
+    <ng-template #myBlock>
+        <p>No soy Osnayder</p>
+    </ng-template>
+<hr>
+
+<h1>NgModel</h1>
+<p>Nombre {{ person.name }}</p>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name">
+<p>Valid : {{nameInput.valid}}</p>
+
+<p>Edad {{ person.age }}</p>
+<input type="number" min="12" max="18" required #ageInput="ngModel" [(ngModel)]="person.age">
+<p>Valid : {{ageInput.valid}}</p>
+
+<hr>
+
 <h1>Eventos</h1>
 <button [disabled]="btnDisabled">Enviar</button>
 <button (click)="toggleButton()">Toggle Button</button>
 
 <p>Edad {{person.age}}</p>
 <button (click)="increaseAge()">Age ++</button>
+
+<div class="box" (scroll)="onScroll($event)">
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat eum perspiciatis enim non, natus quis delectus autem aspernatur dolorem quo explicabo vitae necessitatibus repellat illo ut quisquam porro aliquam veniam!</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus esse modi alias minima earum quos recusandae neque, itaque molestiae a, commodi, laboriosam rerum aliquid repellat laborum? Earum deleniti unde fugit?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto modi dolore quod ea aliquid omnis nobis nostrum labore hic reprehenderit et veritatis ducimus exercitationem aspernatur eveniet nemo, assumenda deleniti itaque?</p>
+</div>
+
+<input type="text" [value]="person.name" (keyup)="changeName($event)">
+<p>Name: {{person.name}}</p>
 <hr>
 
 <h1>Propiedades</h1>
